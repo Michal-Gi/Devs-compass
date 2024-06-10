@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Devs_compass.Models.Tag
+namespace Devs_compass.Models
 {
-    public class Tag
+    public class Opinion
     {
         [Required, Key]
         public int Id { get; set; }
@@ -13,6 +13,10 @@ namespace Devs_compass.Models.Tag
         [Required]
         public string Description { get; set; }
 
-        public List<Software> Softwares { get; set; }
+        [Required]
+        public float Score { get; set; }
+
+        [Required]
+        public DateTime MakeDate { get; set; }
     }
 }

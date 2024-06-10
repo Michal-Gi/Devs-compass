@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Devs_compass.Models.User
+namespace Devs_compass.Models
 {
     public class User
     {
@@ -16,6 +16,6 @@ namespace Devs_compass.Models.User
         [Required, EmailAddress]
         public string Email { get; set; }
 
-        public List<Opinion> Opinions {get; set; }
+        public List<Opinion> Opinions { get; set; }
     }
 }

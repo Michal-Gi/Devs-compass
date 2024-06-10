@@ -31,3 +31,4 @@ C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\refint\De
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\Devs-compass.pdb
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\Devs-compass.genruntimeconfig.cache
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\ref\Devs-compass.dll
+C:\Users\micha\Source\Repos\Devs-compass\Devs-compass\obj\Debug\net7.0\Devs-compass.sourcelink.json
