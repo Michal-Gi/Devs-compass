@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Devs_compass.Models
 {
@@ -7,10 +8,12 @@ namespace Devs_compass.Models
         [Required, Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required, ForeignKey("GameJam")]
+        public int GameJamId { get; set; }
         public GameJam GameJam { get; set; }
 
-        [Required]
+        [Required, ForeignKey("Group")]
+        public int GroupId { get; set; }
         public Group Group { get; set; }
 
         public int? Place {  get; set; }

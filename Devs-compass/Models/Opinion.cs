@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Devs_compass.Models
 {
@@ -18,5 +19,11 @@ namespace Devs_compass.Models
 
         [Required]
         public DateTime MakeDate { get; set; }
+
+        [Required, ForeignKey("User")]
+        public int UserId { get; set; }
+
+        [Required, ForeignKey("Software")]
+        public int SoftwareId { get; set; }
     }
 }

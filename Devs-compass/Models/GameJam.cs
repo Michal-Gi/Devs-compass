@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Devs_compass.Models
 {
-    public class GameJam
+    public abstract class GameJam
     {
         [Required, Key]
         public int Id { get; set; }
@@ -21,5 +22,12 @@ namespace Devs_compass.Models
         public string? link { get; set; }
 
         public string? address { get; set; }
+
+        [Required, ForeignKey("Organizer")]
+        public int OrganizerId { get; set; }
+
+        public List<GameJamParticipation> GameJamParticipations { get; set; }
+
+        public List<Software> Softwares { get; set; }
     }
 }

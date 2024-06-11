@@ -15,10 +15,8 @@ namespace Devs_compass.Models
         [Required]
         public List<Developer> Developers { get; set; }
 
-        [Required]
         public List<Software> Softwares { get; set; }
 
-        [Required]
-        public List<GameJamParticipation> GameJamParisipations { get; set; }
+        public List<GameJamParticipation> GameJamParticipations { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.ConstrainedExecution;
 
 namespace Devs_compass.Models
@@ -20,6 +21,10 @@ namespace Devs_compass.Models
         {
             get
             {
+                if(Opinions is null)
+                    return 0;
+                if(Opinions.Count==0)
+                    return 0;
                 var final = 0f;
                 foreach (Opinion opinion in Opinions)
                     final += opinion.Score;
@@ -30,5 +35,13 @@ namespace Devs_compass.Models
         public string? UseLicense { get; set; }
 
         public float? TimeToBeat { get; set; }
+
+        public List<Tag> Tags { get; set; }
+
+        [Required, ForeignKey("GameJam")]
+        public int GameJamId { get; set; }
+
+        [Required, ForeignKey("Group")]
+        public int GroupId { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Devs_compass.Models
 {
-    public class User
+    public abstract class User
     {
         [Required, Key]
         public int Id { get; set; }
