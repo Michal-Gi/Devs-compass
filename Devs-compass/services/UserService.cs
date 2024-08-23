@@ -5,8 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Devs_compass.Services
 {
-    public class UserService(ApiDbContext context)
+    public class UserService
     {
+        private ApiDbContext context;
+        public UserService(ApiDbContext context)
+        {
+            this.context = context;
+        }
         public async Task<ActionResult<Developer>> GetDeveloperAsync(int id)
         {
             var developer = await context.Developers.FindAsync(id);
@@ -25,7 +30,8 @@ namespace Devs_compass.Services
             {
                 Email = request.Email,
                 Login = request.Login,
-                Password = request.Password
+                Password = request.Password,
+                groups = new()
             };
 
             await context.Developers.AddAsync(developer);
@@ -58,6 +64,19 @@ namespace Devs_compass.Services
                 Password = organizer.Password,
                 Id = organizer.Id
             };
+        }
+
+        public async Task<bool> DeleteDeveloperAsync(int id)
+        {
+            var dev = context.Developers.Where(d => d.Id == id).FirstOrDefault();
+            if (dev != null)
+            {
+                context.Developers.Remove(dev);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+
         }
     }
 }

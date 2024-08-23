@@ -8,12 +8,12 @@ namespace Devs_compass.Models
         public int Id { get; set; }
 
         [Required]
-        public DateTime StartDate { get; set; }
+        public required DateTime StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
 
         [Required]
-        public List<Developer> Developers { get; set; }
+        public required List<Developer> Developers { get; set; }
 
         public List<Software> Softwares { get; set; }
 

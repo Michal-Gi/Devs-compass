@@ -5,6 +5,6 @@ namespace Devs_compass.Models
     public class OwnGameJam : GameJam
     {
         [Required]
-        public float Price { get; set; }
+        public required float Price { get; set; }
     }
 }

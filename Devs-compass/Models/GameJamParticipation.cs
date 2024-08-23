@@ -9,11 +9,11 @@ namespace Devs_compass.Models
         public int Id { get; set; }
 
         [Required, ForeignKey("GameJam")]
-        public int GameJamId { get; set; }
+        public required int GameJamId { get; set; }
         public GameJam GameJam { get; set; }
 
         [Required, ForeignKey("Group")]
-        public int GroupId { get; set; }
+        public required int GroupId { get; set; }
         public Group Group { get; set; }
 
         public int? Place {  get; set; }

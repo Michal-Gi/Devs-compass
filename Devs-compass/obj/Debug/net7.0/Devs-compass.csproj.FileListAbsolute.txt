@@ -25,7 +25,6 @@ C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\staticweb
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Devs-compass.props
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\staticwebassets.pack.json
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\scopedcss\bundle\Devs-compass.styles.css
-C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\Devs-compass.csproj.CopyComplete
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\Devs-compass.dll
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\refint\Devs-compass.dll
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\Devs-compass.pdb
@@ -75,3 +74,4 @@ C:\Users\micha\source\repos\Devs-compass\Devs-compass\bin\Debug\net7.0\runtimes\
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\micha\source\repos\Devs-compass\Devs-compass\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\micha\source\repos\Devs-compass\Devs-compass\obj\Debug\net7.0\Devs-com.079FEE48.Up2Date

@@ -4,6 +4,6 @@ namespace Devs_compass.Models
 {
     public class Developer: User
     {
-        public List<Group> groups { get; set; }
+        public required List<Group> groups { get; set; }
     }
 }

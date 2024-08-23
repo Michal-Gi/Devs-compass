@@ -10,10 +10,10 @@ namespace Devs_compass.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         public List<Opinion> Opinions { get; set; }
 
@@ -39,9 +39,9 @@ namespace Devs_compass.Models
         public List<Tag> Tags { get; set; }
 
         [Required, ForeignKey("GameJam")]
-        public int GameJamId { get; set; }
+        public required int GameJamId { get; set; }
 
         [Required, ForeignKey("Group")]
-        public int GroupId { get; set; }
+        public required int GroupId { get; set; }
     }
 }

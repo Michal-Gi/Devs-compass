@@ -5,7 +5,27 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Devs_compass</RootNamespace>
+    <UserSecretsId>4d4e80fc-fddd-40cb-89c2-69d2f5893d37</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\GameJamParticipation\**" />
+    <Compile Remove="Models\GameJam\**" />
+    <Compile Remove="Models\Group\**" />
+    <Compile Remove="Models\Opinion\**" />
+    <Content Remove="Models\GameJamParticipation\**" />
+    <Content Remove="Models\GameJam\**" />
+    <Content Remove="Models\Group\**" />
+    <Content Remove="Models\Opinion\**" />
+    <EmbeddedResource Remove="Models\GameJamParticipation\**" />
+    <EmbeddedResource Remove="Models\GameJam\**" />
+    <EmbeddedResource Remove="Models\Group\**" />
+    <EmbeddedResource Remove="Models\Opinion\**" />
+    <None Remove="Models\GameJamParticipation\**" />
+    <None Remove="Models\GameJam\**" />
+    <None Remove="Models\Group\**" />
+    <None Remove="Models\Opinion\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.17" />
@@ -20,14 +40,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\GameJam\" />
-    <Folder Include="Models\Group\" />
-    <Folder Include="Models\GameJamParticipation\" />
-    <Folder Include="Models\Opinion\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

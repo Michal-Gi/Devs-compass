@@ -5,6 +5,6 @@ namespace Devs_compass.Models
     public class SponsoredGameJam : GameJam
     {
         [Required]
-        public string Sponsor {  get; set; }
+        public required string Sponsor {  get; set; }
     }
 }

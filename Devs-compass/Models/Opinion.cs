@@ -9,21 +9,21 @@ namespace Devs_compass.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         [Required]
-        public float Score { get; set; }
+        public required float Score { get; set; }
 
         [Required]
-        public DateTime MakeDate { get; set; }
+        public required DateTime MakeDate { get; set; }
 
         [Required, ForeignKey("User")]
-        public int UserId { get; set; }
+        public required int UserId { get; set; }
 
         [Required, ForeignKey("Software")]
-        public int SoftwareId { get; set; }
+        public required int SoftwareId { get; set; }
     }
 }
