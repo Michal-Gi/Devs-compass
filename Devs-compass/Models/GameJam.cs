@@ -11,7 +11,7 @@ namespace Devs_compass.Models
         [Required]
         public required string Name { get; set; }
         [Required]
-        public required string motif { get; set; }
+        public required string Motif { get; set; }
 
         [Required]
         public required DateTime StartDate { get; set; }
@@ -19,9 +19,9 @@ namespace Devs_compass.Models
         [Required]
         public required int Duration { get; set; } = 24;
 
-        public string? link { get; set; }
+        public string? Link { get; set; }
 
-        public string? address { get; set; }
+        public string? Address { get; set; }
 
         [Required, ForeignKey("Organizer")]
         public required int OrganizerId { get; set; }

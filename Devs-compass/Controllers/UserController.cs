@@ -25,7 +25,8 @@ namespace Devs_compass.Controllers
         [HttpPost("Organizer")]
         public async Task<IActionResult> AddOrganizer([FromBody] CreateUserRequest organizer)
         {
-            return Ok();
+            var org = await service.AddOrganizerAsync(organizer);
+            return Ok(org);
         }
         [HttpGet("Developer/{id:int}")]
         public async Task<IActionResult> GetDeveloper(int id)
@@ -51,7 +52,7 @@ namespace Devs_compass.Controllers
         public async Task<IActionResult> DeleteDeveloper(int id)
         {
             var result = await service.DeleteDeveloperAsync(id);
-            if (result == null)
+            if (!result)
             {
                 return NotFound();
             }
@@ -61,11 +62,53 @@ namespace Devs_compass.Controllers
         public async Task<IActionResult> DeleteOrganizer(int id)
         {
             var result = await service.DeleteOrganizerAsync(id);
-            if (result == null)
+            if (!result)
             {
                 return NotFound();
             }
             return NoContent();
+        }
+
+        /// <summary>
+        /// Implements dynamic inheritance between Developer and Organizer
+        /// </summary>
+        /// <param name="id"> id of developer to change into organizer</param>
+        /// <returns></returns>
+        [HttpPost("DeveloperToOrganizer/{id:int}")]
+        public async Task<IActionResult> ChangeDeveloperToOrganizer(int id)
+        {
+            var res = await service.ChangeDeveloperToOrganizerAsync(id);
+            if (res is null)
+            {
+                return NotFound();
+            }
+            return Ok(res.Value);
+        }
+        /// <summary>        
+        /// Implements dynamic inheritance between Organizer and Developer
+        /// </summary>
+        /// <param name="id"> id of organizer to change into developer</param>
+        /// <returns></returns>
+        [HttpPost("OrganizerToDeveloper/{id:int}")]
+        public async Task<IActionResult> ChangeOrganizerToDeveloper(int id)
+        {
+            var res = await service.ChangeOrganizerToDeveloperAsync(id);
+            if (res is null)
+            {
+                return NotFound();
+            }
+            return Ok(res.Value);
+        }
+
+        [HttpGet("{id:int}/Groups")]
+        public async Task<IActionResult> GetGroups(int id)
+        {
+            var res = await service.GetGroupsAsync(id);
+            if (res is null)
+            {
+                return NotFound();
+            }
+            return Ok(res.Value);
         }
     }
 }
