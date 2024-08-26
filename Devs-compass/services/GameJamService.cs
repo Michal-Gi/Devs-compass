@@ -65,5 +65,75 @@ namespace Devs_compass.Services
             var jam = await context.SponsoredGameJams.Where(s => s.Id == id).FirstOrDefaultAsync();
             return jam;
         }
+
+        public async Task<ActionResult<GameJamParticipation>> AddGroupToSponsoredGameJamAsync(int idGameJam, int idGroup) {
+            var jam = await context.SponsoredGameJams.FindAsync(idGameJam);
+            if (jam is null) {
+                return null;
+            }
+            var group = await context.Groups.FindAsync(idGroup);
+            if (group is null)
+            {
+                return null;
+            }
+
+            var part = new GameJamParticipation
+            {
+                GameJamId = jam.Id,
+                GroupId = group.Id,
+                Group = group,
+                GameJam = jam,
+                Place = null
+            };
+
+            return part;
+        }
+        public async Task<ActionResult<GameJamParticipation>> AddGroupToOwnGameJamAsync(int idGameJam, int idGroup)
+        {
+            var jam = await context.OwnGameJams.FindAsync(idGameJam);
+            if (jam is null)
+            {
+                return null;
+            }
+            var group = await context.Groups.FindAsync(idGroup);
+            if (group is null)
+            {
+                return null;
+            }
+
+            var part = new GameJamParticipation
+            {
+                GameJamId = jam.Id,
+                GroupId = group.Id,
+                Group = group,
+                GameJam = jam,
+                Place = null
+            };
+
+            await context.GameJamsParticipations.AddAsync(part);
+            context.SaveChanges();
+
+            return part;
+        }
+
+        public async Task<ActionResult<List<OwnGameJam>>> GetAllOwnGameJamsAsync() {
+            var jams = await context.OwnGameJams.Where(g => g.Id == g.Id).ToListAsync();
+            return jams;
+        }
+        public async Task<ActionResult<List<SponsoredGameJam>>> GetAllSponsoredGameJamsAsync()
+        {
+            var jams = await context.SponsoredGameJams.Where(g => g.Id == g.Id).ToListAsync();
+            return jams;
+        }
+        public async Task<ActionResult<List<OwnGameJam>>> GetAllActiveOwnGameJamsAsync()
+        {
+            var jams = await context.OwnGameJams.Where(g => g.StartDate < DateTime.UtcNow && g.StartDate.AddHours(g.Duration) > DateTime.UtcNow).ToListAsync();
+            return jams;
+        }
+        public async Task<ActionResult<List<SponsoredGameJam>>> GetAllActiveSponsoredGameJamsAsync()
+        {
+            var jams = await context.SponsoredGameJams.Where(g => g.StartDate < DateTime.UtcNow && g.StartDate.AddHours(g.Duration) > DateTime.UtcNow).ToListAsync();
+            return jams;
+        }
     }
 }

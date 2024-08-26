@@ -5,7 +5,7 @@ namespace Devs_compass.Models
     public class Tag
     {
         [Required, Key]
-        public required int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public required string Name { get; set; }

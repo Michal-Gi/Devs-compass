@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Devs-compass")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1c8e1a43de0ac613eda33197eb6857599a15eb7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88252702943d7280edd0330fd70bf7a45ae10681")]
 [assembly: System.Reflection.AssemblyProductAttribute("Devs-compass")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Devs-compass")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

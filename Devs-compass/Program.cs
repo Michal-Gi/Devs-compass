@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<GameJamService>();
+builder.Services.AddTransient<GroupService>();
+builder.Services.AddTransient<TagService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
