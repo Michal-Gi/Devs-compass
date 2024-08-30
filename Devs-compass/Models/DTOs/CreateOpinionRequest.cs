@@ -11,8 +11,6 @@ namespace Devs_compass.Models.DTOs
 
         public required float Score { get; set; }
 
-        public required DateTime MakeDate { get; set; }
-
         public required int UserId { get; set; }
 
         public required int SoftwareId { get; set; }

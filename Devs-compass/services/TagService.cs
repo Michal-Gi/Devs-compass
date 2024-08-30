@@ -41,7 +41,7 @@ namespace Devs_compass.Services
             return tag;
         }
 
-        public async Task<ActionResult<List<Tag>>> GetTagsAsync()
+        public async Task<ActionResult<List<TagVM>>> GetTagsAsync()
         {
             var tag = await context.Tags.Include(t => t.Softwares).ToListAsync();
 
@@ -50,7 +50,11 @@ namespace Devs_compass.Services
                 return null;
             }
 
-            return tag;
+            return tag.Select(t => new TagVM { 
+                Id = t.Id,
+                Description = t.Description,
+                Name = t.Name
+            }).ToList();
         }
 
         public async Task<ActionResult<Tag>> DeleteTagAsync(int id)

@@ -15,10 +15,15 @@ namespace Devs_compass.Services
             this.context = context;
         }
 
-        public async Task<ActionResult<Software>> CreateSoftwareAsync(CreateSoftwareRequest request) {
-            if (request.UseLicense is null && request.TimeToBeat is null) {
+        public async Task<ActionResult<SoftwareVM>> CreateSoftwareAsync(CreateSoftwareRequest request)
+        {
+            if (request.UseLicense is null && request.TimeToBeat is null)
+            {
                 return null;
             }
+
+            var tags = await context.Tags.Where(t => request.TagIds.Contains(t.Id)).ToListAsync();
+
             var soft = new Software
             {
                 Name = request.Name,
@@ -27,24 +32,37 @@ namespace Devs_compass.Services
                 UseLicense = request.UseLicense,
                 TimeToBeat = request.TimeToBeat,
                 GameJamId = request.GameJamId,
-                GroupId = request.GroupId
+                GroupId = request.GroupId,
+                Tags = tags
             };
 
             context.Softwares.Add(soft);
             await context.SaveChangesAsync();
 
-            return soft;
+            return new SoftwareVM
+            {
+                Id = soft.Id,
+                Name = soft.Name,
+                Description = soft.Description,
+                Opinions = soft.Opinions,
+                TimeToBeat = soft.TimeToBeat,
+                GameJamId = soft.GameJamId,
+                GroupId = soft.GroupId
+            };
         }
 
-        public async Task<ActionResult<Software>> GetSoftwareAsync(int id) {
+        public async Task<ActionResult<Software>> GetSoftwareAsync(int id)
+        {
             var soft = await context.Softwares.Include(s => s.Opinions).FirstOrDefaultAsync(s => s.Id == id);
-            if (soft is null) {
+            if (soft is null)
+            {
                 return null;
             }
             return soft;
         }
 
-        public async Task<ActionResult<Software>> DeleteSoftwareAsync(int id) {
+        public async Task<ActionResult<Software>> DeleteSoftwareAsync(int id)
+        {
             var soft = await context.Softwares.Include(s => s.Opinions).FirstOrDefaultAsync(s => s.Id == id);
             if (soft is null)
             {
@@ -56,7 +74,8 @@ namespace Devs_compass.Services
             return soft;
         }
 
-        public async Task<ActionResult<List<Software>>> GetSoftwaresAsync() {
+        public async Task<ActionResult<List<Software>>> GetSoftwaresAsync()
+        {
             var softs = await context.Softwares.ToListAsync();
             return softs;
         }

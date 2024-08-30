@@ -6,11 +6,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:3000") // Allow requests from this origin
+                          .AllowAnyHeader() 
+                          .AllowAnyMethod());
+});
+
 builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<GameJamService>();
 builder.Services.AddTransient<GroupService>();
 builder.Services.AddTransient<TagService>();
 builder.Services.AddTransient<SoftwareService>();
+builder.Services.AddTransient<OpinionService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -30,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

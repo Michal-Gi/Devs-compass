@@ -14,7 +14,7 @@ namespace Devs_compass.Controllers
             this.service = service;
         }
 
-        [HttpPost("{id:int}")]
+        [HttpPost()]
         public async Task<ActionResult<Opinion>> CreateOpinion(CreateOpinionRequest request)
         {
             var res = await service.CreateOpinionAsync(request);

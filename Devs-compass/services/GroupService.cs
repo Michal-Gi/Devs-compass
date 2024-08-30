@@ -16,7 +16,7 @@ namespace Devs_compass.Services
             this.context = context;
         }
 
-        public async Task<ActionResult<Group>> CreateGroupAsync(CreateGroupRequest request)
+        public async Task<ActionResult<GroupVM>> CreateGroupAsync(CreateGroupRequest request)
         {
             var group = new Group
             {
@@ -30,27 +30,70 @@ namespace Devs_compass.Services
             await context.Groups.AddAsync(group);
             await context.SaveChangesAsync();
 
-            return group;
+            return new GroupVM
+            {
+                Id = group.Id,
+                StartDate = group.StartDate,
+                EndDate = group.EndDate,
+                Developers = group.Developers.Select(d => new DeveloperVM
+                {
+                    Id = d.Id,
+                    Password = d.Password,
+                    Login = d.Login,
+                    Email = d.Email
+                }).ToList()
+            };
         }
 
-        public async Task<ActionResult<Group>> GetGroupAsync(int id)
+        public async Task<ActionResult<GroupVM>> GetGroupAsync(int id)
         {
-            var group = await context.Groups.FindAsync(id);
+            var group = await context.Groups
+                .Include(g => g.Softwares)
+                .Include(g => g.Developers)
+                .Include(g => g.GameJamParticipations)
+                .FirstOrDefaultAsync(g => g.Id == id);
             if (group is null)
             {
                 return null;
             }
-            return group;
+            return new GroupVM
+            {
+                Id = group.Id,
+                StartDate = group.StartDate,
+                EndDate = group.EndDate,
+                Developers = group.Developers.Select(d => new DeveloperVM
+                {
+                    Id = d.Id,
+                    Password = d.Password,
+                    Login = d.Login,
+                    Email = d.Email
+                }).ToList()
+            };
         }
 
-        public async Task<ActionResult<List<Group>>> GetGroupsAsync()
+        public async Task<ActionResult<List<GroupVM>>> GetGroupsAsync()
         {
-            var groups = await context.Groups.Where(g => g.Id == g.Id).ToListAsync();
+            var groups = await context.Groups
+                .Include(g => g.Softwares)
+                .Include(g => g.Developers)
+                .Include(g => g.GameJamParticipations)
+                .Where(g => g.Id == g.Id).ToListAsync();
             if (groups is null)
             {
                 return null;
             }
-            return groups;
+            return groups.Select(group => new GroupVM {
+                Id = group.Id,
+                StartDate = group.StartDate,
+                EndDate = group.EndDate,
+                Developers = group.Developers.Select(d => new DeveloperVM
+                {
+                    Id = d.Id,
+                    Password = d.Password,
+                    Login = d.Login,
+                    Email = d.Email
+                }).ToList()
+            }).ToList();
         }
 
         public async Task<ActionResult<Group>> DeleteGroupAsync(int id)
@@ -65,16 +108,19 @@ namespace Devs_compass.Services
             return group;
         }
 
-        public async Task<ActionResult<List<Developer>>> AddGroupMembersAsync(int GroupId, List<int> MemberIds)
+        public async Task<ActionResult<List<UserVM>>> AddGroupMembersAsync(int GroupId, List<int> MemberIds)
         {
 
             var group = await context.Groups.Include(g => g.Developers).Where(g => g.Id == GroupId).FirstOrDefaultAsync();
-            if (group is null) {
+            if (group is null)
+            {
                 return null;
             }
-            foreach (Developer dev in group.Developers) {
-                if (MemberIds.Contains(dev.Id)) {
-                    return null;
+            foreach (Developer dev in group.Developers)
+            {
+                if (MemberIds.Contains(dev.Id))
+                {
+                    MemberIds.Remove(dev.Id);
                 }
             }
 
@@ -92,7 +138,13 @@ namespace Devs_compass.Services
             group.Developers.AddRange(devs);
             await context.SaveChangesAsync();
 
-            return group.Developers;
+            return group.Developers.Select(d => new UserVM
+            {
+                Email = d.Email,
+                Id = d.Id,
+                Password = d.Password,
+                Login = d.Login
+            }).ToList();
         }
 
     }

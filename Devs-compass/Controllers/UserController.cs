@@ -100,6 +100,11 @@ namespace Devs_compass.Controllers
             return Ok(res.Value);
         }
 
+        /// <summary>
+        /// Gets the groups of specified user.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:int}/Groups")]
         public async Task<IActionResult> GetGroups(int id)
         {

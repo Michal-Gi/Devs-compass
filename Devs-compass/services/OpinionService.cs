@@ -32,7 +32,7 @@ namespace Devs_compass.Services
                 Name = request.Name,
                 Description = request.Description,
                 Score = request.Score,
-                MakeDate = request.MakeDate,
+                MakeDate = DateTime.UtcNow,
                 UserId = request.UserId,
                 SoftwareId = request.SoftwareId,
             };

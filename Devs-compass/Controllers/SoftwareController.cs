@@ -27,13 +27,13 @@ namespace Devs_compass.Controllers
             return Ok(res);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet()]
         public async Task<ActionResult<List<Software>>> GetSoftwares()
         {
             var res = await service.GetSoftwaresAsync();
             return Ok(res.Value);
         }
-        [HttpGet()]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Software>> GetSoftware(int id)
         {
             var res = await service.GetSoftwareAsync(id);

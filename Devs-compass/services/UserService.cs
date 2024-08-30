@@ -93,9 +93,11 @@ namespace Devs_compass.Services
             return false;
         }
 
-        public async Task<ActionResult<UserVM>> ChangeDeveloperToOrganizerAsync(int id) {
+        public async Task<ActionResult<UserVM>> ChangeDeveloperToOrganizerAsync(int id)
+        {
             var dev = await context.Developers.FindAsync(id);
-            if (dev is null) {
+            if (dev is null)
+            {
                 return null;
             }
             var org = new Organizer
@@ -146,12 +148,25 @@ namespace Devs_compass.Services
             };
         }
 
-        public async Task<ActionResult<List<Group>>> GetGroupsAsync(int id) {
+        public async Task<ActionResult<List<GroupVM>>> GetGroupsAsync(int id)
+        {
             var dev = await context.Developers.Include(d => d.groups).Where(d => d.Id == id).FirstOrDefaultAsync();
-            if (dev is null) {
+            if (dev is null)
+            {
                 return null;
             }
-            return dev.groups;
+            return dev.groups.Select(g => new GroupVM
+            {
+                Id = g.Id,
+                Developers = g.Developers.Select(d => new DeveloperVM
+                {
+                    Id = d.Id,
+                    Password = d.Password,
+                    Email = d.Email,
+                    Login = d.Login
+                }).ToList(),
+                StartDate = g.StartDate
+            }).ToList();
         }
     }
 }
